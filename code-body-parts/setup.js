@@ -33,16 +33,10 @@ function setup() {
     }
 
     trolley_options = {
-        // isStatic: true
-        friction : 100000000000000000000000000000000000000000000000000000
+        isStatic: true,
+        friction : 1
     }
 
-    // These are the parameters for Body class: {
-    // x, y, width, height, radius, options, fill, visible
-    // }
-    // copter = new MatterBody(300, 150, 100, 70, null, null, null, true);
-    // pack = new MatterBody(700, 100, null, null, 40, pack_options, null, true);
-    // ground = new MatterBody(400, 550, 1600, 100, null, ground_options, null, true);
     copter = Bodies.rectangle(-300, 150, 100, 70);
     pack = Bodies.circle(300, 150, 40, pack_options);
     ground = Bodies.rectangle(400, 550, 1600, 100, ground_options);
@@ -56,8 +50,4 @@ function setup() {
     World.add(world, pack);
     World.add(world, copter);
     World.add(world, ground);
-
-    // World.add(world, trolleyRight);
-    // World.add(world, trolleyLeft);
-    // World.add(world, trolleyDown);
 }

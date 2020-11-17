@@ -11,10 +11,6 @@ function displayImagesAndObjects() {
     packImage.scale = 0.6;
     copterImage.scale = 2;
 
-    // rect(trolleyUp.position.x, trolleyUp.position.y, trolleyUp.width, trolleyUp.height);
-    // rect(trolleyLeft.position.x, trolleyLeft.position.y, trolleyLeft.width, trolleyLeft.height);
-    // rect(trolleyRight.position.x, trolleyRight.position.y, trolleyRight.width, trolleyRight.height);
-
     trolleyLeft.display("red");
     trolleyRight.display("red");
     trolleyDown.display("red");
