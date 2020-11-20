@@ -2,6 +2,7 @@ const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
+const Constraint = Matter.Constraint;
 // Some images' file Paths
 const CopterImagePath = "images/helicopter.png";
 const PackageImagePath = "images/package.png";
@@ -25,3 +26,5 @@ var gameShouldRestart;
 var trolleyRight, trolleyLeft, trolleyDown, trolley_options;
 
 var packShouldStayAt150Y;
+
+var joined_trolley_1_options, joined_trolley_2_options, joined_trolley_3_options, trolley1, trolley2, trolley3;

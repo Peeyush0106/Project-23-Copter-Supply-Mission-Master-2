@@ -4,13 +4,6 @@ function displayImagesAndObjects() {
     rectMode(CENTER);
     imageMode(CENTER);
 
-    packImage.width = 80;
-    packImage.height = 80;
-    groundImage.height = 100;
-    groundImage.width = 1600;
-    packImage.scale = 0.6;
-    copterImage.scale = 2;
-
     trolleyLeft.display("red");
     trolleyRight.display("red");
     trolleyDown.display("red");
@@ -18,9 +11,9 @@ function displayImagesAndObjects() {
     image(groundImage, groundImageX, groundImageY);
     image(copterImage, copterImageX, copterImageY);
     // image(packImage, packImageX, packImageY);
-    
+    ellipseMode(RADIUS);
     rect(copter.position.x, copter.position.y, 100, 70);
-    ellipse(pack.position.x, pack.position.y, 80);
+    ellipse(pack.position.x, pack.position.y, 30);
 
     text("MouseX :" + mouseX, 500, 250);
     text("MouseY :" + mouseY, 500, 350);
@@ -29,7 +22,7 @@ function displayImagesAndObjects() {
 // Set the Object and Image properties
 function setProperties() {
     setObjectMovementProperties();
-    setImagePositionProperties();
+    setImageProperties();
 }
 
 // Move objects and set the velocities
@@ -42,10 +35,11 @@ function setObjectMovementProperties() {
     // Matter.Body.setVelocity(pack, pack_speed);
     if (packShouldStayAt150Y) {
         // pack.position.x += 4;
-        // Matter.Body.setVelocity(pack, pack_speed);
+        pack.position.y = 150;
+        Matter.Body.setVelocity(pack, pack_speed);
     }
     if (!isOffScreen(copter, 100, 70) && keyDown(DOWN_ARROW) && pack.position.y < 151) {
-        // packShouldStayAt150Y = false;
+        packShouldStayAt150Y = false;
         Matter.Body.setStatic(pack, false);
         // pack.position.x = copter.position.x;
         console.log("Key has been pressed");
@@ -53,7 +47,7 @@ function setObjectMovementProperties() {
 }
 
 // Declare image positions
-function setImagePositionProperties() {
+function setImageProperties() {
     groundImageX = ground.position.x;
     groundImageY = ground.position.y;
 
@@ -62,6 +56,13 @@ function setImagePositionProperties() {
 
     packImageX = pack.position.x;
     packImageY = pack.position.y;
+    
+    packImage.width = 80;
+    packImage.height = 80;
+    groundImage.height = 200;
+    groundImage.width = 1600;
+    packImage.scale = 0.6;
+    copterImage.scale = 2;
 }
 
 function isOffScreen(object, objectRequiredWidth, objectRequiredHeight) {
