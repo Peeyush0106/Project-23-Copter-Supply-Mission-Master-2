@@ -15,7 +15,7 @@ var copterImage, copterImageX, copterImageY, packImage, packImageX, packImageY, 
 
 var packageFallX;
 
-var copter_speed, pack_speed;
+var copter_speed;
 
 var groundImageX, groundImageY;
 
@@ -28,3 +28,7 @@ var trolleyRight, trolleyLeft, trolleyDown, trolley_options;
 var packShouldStayAt150Y;
 
 var joined_trolley_1_options, joined_trolley_2_options, joined_trolley_3_options, trolley1, trolley2, trolley3;
+
+var pack;
+
+var packReleased = false;

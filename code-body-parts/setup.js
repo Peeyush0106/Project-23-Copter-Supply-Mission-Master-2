@@ -20,18 +20,14 @@ function setup() {
         x: 4,
         y: 0
     }
-    pack_speed = {
-        x: 4,
-        y: 0
-    }
 
     // Options for objects
     pack_options = {
         restitution: 0.6,
-        density: 0.2,
-        firction: 2
-        // ,
-        // isStatic: true
+        density: 1,
+        friction: 1
+        ,
+        isStatic: false
     }
     ground_options = {
         isStatic: true,
@@ -44,12 +40,12 @@ function setup() {
     }
 
     copter = Bodies.rectangle(-300, 150, 100, 70);
-    pack = Bodies.circle(-300, 150, 30, pack_options);
+    pack = Bodies.circle(100, 150, 30, pack_options);
     ground = Bodies.rectangle(400, 550, 1600, 200, ground_options);
 
-    trolleyRight = new ConatinerPart(480, 410, 100, trolley_options, null);
-    trolleyLeft = new ConatinerPart(320, 410, 100, trolley_options, null);
-    trolleyDown = new ConatinerPart(400, 480, 200, trolley_options, PI / 2);
+    trolleyRight = new ContainerPart(480, 410, 100, trolley_options, null);
+    trolleyLeft = new ContainerPart(320, 410, 100, trolley_options, null);
+    trolleyDown = new ContainerPart(400, 480, 200, trolley_options, PI / 2);
 
     // joined_trolley_1_options = {
     //     bodyA: trolleyLeft.body,
@@ -80,7 +76,7 @@ function setup() {
 
     Engine.run(engine);
 
-    World.add(world, pack);
+    //World.add(world, pack);
     World.add(world, copter);
     World.add(world, ground);
 }

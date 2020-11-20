@@ -1,8 +1,9 @@
 // Display Objects and Images
 function displayImagesAndObjects() {
-    ellipseMode(CENTER);
+    // ellipseMode(CENTER);
     rectMode(CENTER);
     imageMode(CENTER);
+    ellipseMode(RADIUS);
 
     trolleyLeft.display("red");
     trolleyRight.display("red");
@@ -11,9 +12,12 @@ function displayImagesAndObjects() {
     image(groundImage, groundImageX, groundImageY);
     image(copterImage, copterImageX, copterImageY);
     // image(packImage, packImageX, packImageY);
-    ellipseMode(RADIUS);
+    
     rect(copter.position.x, copter.position.y, 100, 70);
-    ellipse(pack.position.x, pack.position.y, 30);
+    if(packReleased) {
+        Matter.Body.setStatic(pack, false);
+        ellipse(pack.position.x, pack.position.y, 30);
+    }
 
     text("MouseX :" + mouseX, 500, 250);
     text("MouseY :" + mouseY, 500, 350);
@@ -27,21 +31,20 @@ function setProperties() {
 
 // Move objects and set the velocities
 function setObjectMovementProperties() {
-    console.log(Math.round(copter.position.x),
-    Math.round(pack.position.x));
-
+   
     copter.position.y = 150;
-    Matter.Body.setVelocity(copter, copter_speed);
-    // Matter.Body.setVelocity(pack, pack_speed);
-    if (packShouldStayAt150Y) {
-        // pack.position.x += 4;
-        pack.position.y = 150;
-        Matter.Body.setVelocity(pack, pack_speed);
-    }
-    if (!isOffScreen(copter, 100, 70) && keyDown(DOWN_ARROW) && pack.position.y < 151) {
-        packShouldStayAt150Y = false;
-        Matter.Body.setStatic(pack, false);
+    Matter.Body.setVelocity(copter, copter_speed);    
+    
+    if (!isOffScreen(copter, 100, 70) && keyDown(DOWN_ARROW) && !packReleased) {
+        //packShouldStayAt150Y = false;
+        //Matter.Body.setVelocity(pack, {x: 0,y: 0});
+        //Matter.Body.setStatic(pack, false);        
         // pack.position.x = copter.position.x;
+        //pack = Bodies.circle(copter.position.x, 150, 30, pack_options);
+        packReleased = true;
+        pack.position.x = copter.position.x;        
+        ellipse(pack.position.x, pack.position.y, 30);
+        Matter.Body.setStatic(pack, false);
         console.log("Key has been pressed");
     }
 }
@@ -54,8 +57,8 @@ function setImageProperties() {
     copterImageX = copter.position.x;
     copterImageY = copter.position.y;
 
-    packImageX = pack.position.x;
-    packImageY = pack.position.y;
+    //packImageX = pack.position.x;
+    //packImageY = pack.position.y;
     
     packImage.width = 80;
     packImage.height = 80;
